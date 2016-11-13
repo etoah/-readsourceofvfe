@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app" r-show="{show}" r-class="{hl: hl}">Hi, Reve</div>
+	<script src="./real.js"></script>
+	<script>
+    var $app = new Reve({
+        el: '#app',
+        data: function () {
+            // define some state of ViewModel
+            return {
+                show: true,
+                hl: true
+            }
+        },
+        ready: function () {
+            // ... do something when instance compele ...
+        },
+        methods: {
+            // ... define methods of the ViewModel ...
+        }
+    })
+    </script>
+</body>
+
+</html>

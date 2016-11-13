@@ -1,0 +1,37 @@
+{
+  "name": "real",
+  "version": "1.6.11",
+  "description": "Web components framework that using in server-side render. Ω support IE6 +",
+  "main": "reve.js",
+  "scripts": {
+    "pt": "./node_modules/.bin/mocha-phantomjs ./test/runner.html",
+    "test": "npm run pt && npm start",
+    "start": "./node_modules/.bin/mocha test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/switer/real.git"
+  },
+  "keywords": [
+    "data-binding",
+    "components reflect"
+  ],
+  "author": "switer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/switer/real/issues"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.8.10",
+    "gulp-header": "^1.2.2",
+    "gulp-uglifyjs": "^0.5.0",
+    "gulp-watch": "^4.1.0",
+    "gulp-webpack": "^1.1.2",
+    "jshint": "^2.8.0",
+    "jshint-loader": "^0.8.3",
+    "mocha": "^2.3.4",
+    "mocha-phantomjs": "^4.0.1",
+    "phantomjs": "^1.9.18"
+  }
+}

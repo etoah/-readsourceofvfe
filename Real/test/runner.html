@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <script>
+        mocha.setup('bdd')
+        var expect = chai.expect;
+        var assert = chai.assert;
+    </script>
+</head>
+<body>
+    <div id="mocha"></div>
+    <div id="app"></div>
+    <script src="../dist/real.js"></script>
+    <script>
+        if(navigator.userAgent.match('PhantomJS')) {
+            Reve.consoler.error = function() {}
+            Reve.consoler.errorTrace = function() {}
+        }
+        function template(fn) {
+            return fn.toString().replace(/^function\s*\(\s*\)\s*\{\s*\/\*|\*\/\s*\}$/, '')
+        }
+    </script>
+    <script src="./spec-instance.js"></script>
+    <script src="./spec-component.js"></script>
+    <script src="./spec-directive.js"></script>
+    <script src="./spec-classmethod.js"></script>
+    <script src="./spec-instancemethod.js"></script>
+    <script>
+        if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+        else { mocha.run(); }
+    </script>
+</body>
+</html>

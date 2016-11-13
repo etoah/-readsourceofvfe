@@ -1,0 +1,19 @@
+{
+  "name": "project_name",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-here": "^1.0.3",
+    "gulp-watch": "^4.3.5",
+    "underscore": "^1.8.3",
+    "vfe": "^2.0.1"
+  },
+  "dependencies": {
+    "express": "^4.13.1"
+  }
+}

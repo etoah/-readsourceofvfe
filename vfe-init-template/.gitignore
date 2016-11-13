@@ -1,0 +1,4 @@
+dev
+release
+node_modules
+*.log
