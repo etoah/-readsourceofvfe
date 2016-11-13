@@ -295,7 +295,7 @@ module.exports = {
                 var value = that.$el[vType]
                 var state = vm.$data[that._prop]
 
-                if (util.diff(value, state)) {
+                if (util.diff(value, state)) {   //DOM树对比
                     vm.$set(that._prop, value)
                 }
             }
@@ -312,7 +312,7 @@ module.exports = {
                 }
             }
             util.forEach(this.evtType.split(','), function (t) {
-                $el.on(t, that._requestChange)
+                $el.on(t, that._requestChange) //监听所有事件，执行类angular 的digest
             })
 
             // Initial state 2 DOM update

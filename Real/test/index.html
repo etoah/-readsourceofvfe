@@ -1,44 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="format-detection" content="telphone=no, email=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telphone=no, email=no" />
 	<title>REVE</title>
 	<script src="../dist/real.js"></script>
 	<style>
-		body {padding: 0px;margin: 0;}
-		.hl {color: cornflowerblue}
-		.c-header {background-color: #f0f0f0;line-height: 50px;position: relative;}
-			.c-header .c-button {position: absolute;top: 10px;height: 20px;right: 5px;}
-		.content {text-align: center;height: 100px;margin-top: 50px;}
-		.button-group {text-align: center;}
-			.button-group button {line-height: 28px;color: white;background-color: cornflowerblue;border: 0;padding: 6px;
-				outline: 0;border-radius: 4px;margin: 5px;}
-
-		.footer {display: block;width: 100%;text-align: center;color: #ccc;text-decoration: underline;cursor: pointer;}
+		body {
+			padding: 0px;
+			margin: 0;
+		}
+		
+		.hl {
+			color: cornflowerblue
+		}
+		
+		.c-header {
+			background-color: #f0f0f0;
+			line-height: 50px;
+			position: relative;
+		}
+		
+		.c-header .c-button {
+			position: absolute;
+			top: 10px;
+			height: 20px;
+			right: 5px;
+		}
+		
+		.content {
+			text-align: center;
+			height: 100px;
+			margin-top: 50px;
+		}
+		
+		.button-group {
+			text-align: center;
+		}
+		
+		.button-group button {
+			line-height: 28px;
+			color: white;
+			background-color: cornflowerblue;
+			border: 0;
+			padding: 6px;
+			outline: 0;
+			border-radius: 4px;
+			margin: 5px;
+		}
+		
+		.footer {
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: #ccc;
+			text-decoration: underline;
+			cursor: pointer;
+		}
 	</style>
 </head>
+
 <body>
 	<div id="app" r-show="{show}" r-class="{hl: hl}">
-		<div class="c-header" 
-			r-component="c-header" 
-			r-ref="header"
-			r-data="{
+		<div class="c-header" r-component="c-header" r-ref="header" r-data="{
 				title: header;
-			}"
-			r-methods="{
+			}" r-methods="{
 				onRefresh: onRefresh;
-			}"
-			r-autorefresh="{onRefresh}"
-		>
+			}" r-autorefresh="{onRefresh}">
 			<center r-html>{title}</center>
-			<button class="c-button" 
-				r-component="c-button" 
-				r-ref="button"
-			>Home</button>
+			<button class="c-button" r-component="c-button" r-ref="button">Home</button>
 		</div>
 		<span r-text>
 			1.{header} 2.{header}
@@ -53,14 +87,11 @@
 				click: onChangeHeader
 			}">change child component's title</button>
 		</div>
-		<p><center><input type="text" r-model="header"/></center></p>
+		<p>
+			<center><input type="text" r-model="header" /></center>
+		</p>
 		<!-- <p><center><textarea r-model="header"></textarea></center></p> -->
-		<div 
-			class="footer" 
-			r-component="c-footer" 
-			r-replace="true" 
-			r-data="{header: header}"
-		></div>
+		<div class="footer" r-component="c-footer" r-replace="true" r-data="{header: header}"></div>
 		<button r-on="{click: onUpdateById}">Click to update "text"</button>
 		<div>
 			<span r-text>{updateid}</span>
@@ -146,4 +177,5 @@
 		$child.$appendTo($app)
 	</script>
 </body>
+
 </html>

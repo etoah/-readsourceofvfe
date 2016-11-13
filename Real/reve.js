@@ -217,7 +217,7 @@ Real.prototype.$compile = function (el, scope) {
     var componentDec = NS + 'component'
     var vm = this
     // compile directives of the VM
-    var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _externalDirectives)
+    var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _externalDirectives) //所有指令
     var attSels = util.keys(_diretives)
     var scopedDec = util.keys(buildInScopedDirectives).concat(_scopedDirectives)
     var allScopedDec = [componentDec].concat(util.map(scopedDec, function (name) {
@@ -227,7 +227,7 @@ Real.prototype.$compile = function (el, scope) {
         el, 
         allScopedDec, 
         // normal attribute directives
-        util.map(attSels, function (name) {
+        util.map(attSels, function (name) {   //查找所有指令
             return conf.namespace + name
         })
     )
@@ -527,7 +527,7 @@ function Ctor (options) {
         Real.call(this, instanOpts)
     }
     Class.__id = classid
-    util.inherit(Class, Real)
+    util.inherit(Class, Real) //继承于Real
     return Class
 }
 Real.create = function (options) {
