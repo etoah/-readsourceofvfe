@@ -19,7 +19,7 @@ requestFactory.registerRequestor('error', function (cfg, callback) {
 
 test('render error', async function () {
 	try {
-		await pigfarm({
+		await pigfarm({ //这里可以用模板字符串
 			render: templateCompiler('<html>\n' +
 				'<head></head>\n' +
 				'    <body>\n' +
