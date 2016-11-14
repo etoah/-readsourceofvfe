@@ -71,23 +71,13 @@ var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _ex
                 $directives.push(d)
     })
 ```
+在指令的构造函数里会bind函数.
 
-### 生命周期
- component 继承于Real
-
-
-
-#### 组件初始化
-
-获取所有指令：
-
-```javascript
-    var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _externalDirectives) //所有指令
-```
+对于一般的指令，bind函数只会写属性，但对于有双向绑定功能的model指令来说，
+有点不同。
 
 
-
-### 双向绑定原理
+#### 双向绑定原理
 model指令会监听input,textarea,select的change,input,keyup事件：
 
 ```javascript
@@ -109,9 +99,7 @@ _requestChange:
             }
 
 ```
-
-$set会执行 Real实例的$set方法
-
+$set会执行 Real实例的$set方法。
 ```javascript
 Real.prototype.$set = function (/*[keypath, ]*/value) {
     var keypath = util.type(value) == 'string' ? value : ''
@@ -124,11 +112,31 @@ Real.prototype.$set = function (/*[keypath, ]*/value) {
     this.$update()
 }
 ```
-而`$update`方法，会把变更执行到child componets,dirctives.：
+而`$update`方法，会把变更执行到child componets,dirctives.
+
+>对于单向绑定，直接用get,set就好。
+
+
+### 生命周期
+ component 继承于Real
+
+
+created
+ready
+
+
+Real.prototype.$destory会调用所有的component,directive,的destroy,并会把所有函数指向noop,
+对象的指向空。
+
+
+#### 组件初始化
+
+获取所有指令：
 
 ```javascript
-
+    var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _externalDirectives) //所有指令
 ```
+
 
 
 ### 静态方法
@@ -146,8 +154,37 @@ Real.set：设置配置
 
  指令更轻量，一般只重置bind,unbind,update方法
 
+--- 
 
- ### 问题
+### 更新机制&性能
+
+在angular中，大量的双向绑定一直存在是广为诟病的性能问题，
+angular会在所有的UI事件(ng-click,ng-change...)，网络事件($http)，定时事件(timeout,interval)时直接的或间接的($apply)
+调用$digest, 当watch列表一大时，会有严重的性能问题。
+ 但Real不一样， Real虽然监听了部份UI事件(change,keyup), 但是通过主动的$set, 来间接的调用component,directive
+ 的update方法。
+
+这时能不能有效的，少量的部份更新Dom, 减少部份的重绘和重画就成了性能优化的关键。
+着重的分析一下更新机制.
+
+这里有两个关键：
+- util.diff
+- Real.prototype.$set
+
+#### util.diff
+
+
+#### Real.prototype.$update
+
+
+
+#### 性能优化
+
+- 少量更新： 
+- 批量更新：下一个事件循环更新
+
+
+### 问题
 
  1. server-side render?
  2. 
