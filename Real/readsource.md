@@ -100,6 +100,7 @@ _requestChange:
 
 ```
 $set会执行 Real实例的$set方法。
+
 ```javascript
 Real.prototype.$set = function (/*[keypath, ]*/value) {
     var keypath = util.type(value) == 'string' ? value : ''
@@ -130,17 +131,11 @@ Real.prototype.$destory会调用所有的component,directive,的destroy,并会�
 
 
 #### 组件初始化
-
 获取所有指令：
-
 ```javascript
     var _diretives = util.extend({}, buildInDirectives, buildInScopedDirectives, _externalDirectives) //所有指令
 ```
-
-
-
 ### 静态方法
-
 Real.create :  创建应用，继承自Real
 Real.component : 组件继承自Real
 Real.directive : 定义指令 
@@ -149,9 +144,7 @@ Real.set：设置配置
 
 ###  组件和指令的区别
 
-
 组件继承自Real, 有单独的lifecycle hook,
-
  指令更轻量，一般只重置bind,unbind,update方法
 
 --- 
@@ -187,4 +180,4 @@ angular会在所有的UI事件(ng-click,ng-change...)，网络事件($http)，�
 ### 问题
 
  1. server-side render?
- 2. 
+ 2. scoped?  会调用$compile？
