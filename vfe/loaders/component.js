@@ -4,14 +4,14 @@ var fs = require('fs')
 var path = require('path')
 
 module.exports = function (source) {
-	var callback = this.async()
-	var loader = this
+	var callback = this.async() //可异步
+	var loader = this  //this.request.  请求的string eg:/abc/loader1.js?xyz!/abc/node_modules/loader2/index.js!/abc/resource.js?rrr
 	var oneMatches = this.request.match(/[\/\\][^\/\\]+[\/\\]([^\/\\]+)[\/\\]([^\/\\]+)\.js$/)
 
 	// /component_directory/component/component.js
 	if (oneMatches && oneMatches[1] === oneMatches[2]) {
-		return this.resolve(
-			this.context, 
+		return this.resolve( //
+			this.context,  //A string. The directory of the module. 
 			'./' + oneMatches[1] + '.css', 
 			function (err, cssRequest) {
 				if (fs.existsSync(cssRequest)) {
