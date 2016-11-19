@@ -57,7 +57,7 @@ var $app = new Reve({
 然后就是，template, repalce参数处理，作用应该和angular一致。
 
 
-在此时(编译前)会触发`created`事件(create hook)，
+在此时(编译前)会触发`created`事件(created hook)，
 $compile,取出所有指令:
 
 ```javascript
